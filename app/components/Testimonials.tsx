@@ -35,7 +35,7 @@ export default function Testimonials({ items }: TestimonialsProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-5xl md:text-6xl lg:text-7xl font-bold mb-16 text-center"
+          className="text-5xl md:text-6xl lg:text-7xl font-bold mb-16 text-center text-zinc-900"
         >
           Testimonials
         </motion.h2>
@@ -48,21 +48,21 @@ export default function Testimonials({ items }: TestimonialsProps) {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -50 }}
               transition={{ duration: 0.5 }}
-              className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 md:p-12"
+              className="bg-zinc-50 border border-zinc-200 rounded-3xl p-8 md:p-12"
             >
-              <p className="text-2xl md:text-3xl text-gray-300 leading-relaxed mb-8 italic">
+              <p className="text-2xl md:text-3xl text-zinc-700 leading-relaxed mb-8 italic">
                 "{items[currentIndex].content}"
               </p>
               
               <div className="flex items-center gap-6">
-                <div className="w-16 h-16 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-2xl font-bold">
+                <div className="w-16 h-16 rounded-full bg-zinc-100 border border-zinc-200 flex items-center justify-center text-2xl font-bold text-zinc-900">
                   {items[currentIndex].name.charAt(0)}
                 </div>
                 <div>
-                  <p className="text-xl font-bold">
+                  <p className="text-xl font-bold text-zinc-900">
                     {items[currentIndex].name}
                   </p>
-                  <p className="text-lg text-gray-400">
+                  <p className="text-lg text-zinc-600">
                     {items[currentIndex].role}, {items[currentIndex].company}
                   </p>
                 </div>
@@ -78,8 +78,8 @@ export default function Testimonials({ items }: TestimonialsProps) {
                 onClick={() => setCurrentIndex(index)}
                 className={`w-3 h-3 rounded-full transition-all duration-300 ${
                   index === currentIndex
-                    ? 'bg-white w-8'
-                    : 'bg-white/30 hover:bg-white/50'
+                    ? 'bg-zinc-900 w-8'
+                    : 'bg-zinc-300 hover:bg-zinc-400'
                 }`}
                 aria-label={`Go to testimonial ${index + 1}`}
               />
