@@ -48,69 +48,71 @@ export default function Contact({ data }: ContactProps) {
   ]
 
   return (
-    <section id="contact" className="min-h-screen px-4 py-20 flex items-center">
-      <div className="max-w-4xl mx-auto w-full">
+    <section id="contact" className="min-h-screen px-4 py-32 bg-white dark:bg-zinc-950">
+      <div className="max-w-2xl mx-auto">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-5xl md:text-6xl lg:text-7xl font-bold mb-16 text-center text-zinc-900"
+          className="text-xs uppercase tracking-widest text-zinc-500 dark:text-zinc-500 font-medium mb-12"
         >
           Contact
         </motion.h2>
         
-        <div className="grid md:grid-cols-2 gap-12">
+        <div className="space-y-12">
           {/* Contact Info */}
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
+            className="space-y-6"
           >
-            <h3 className="text-3xl font-bold mb-6 text-zinc-900">Let's Connect</h3>
-            <p className="text-lg text-zinc-600 mb-8 leading-relaxed">
-              Projeleriniz veya işbirliği fırsatları hakkında konuşmak isterseniz, aşağıdaki formdan bana ulaşabilirsiniz.
-            </p>
-            
-            <div className="space-y-4 mb-8">
-              <a
-                href={`mailto:${data.email}`}
-                className="block text-xl text-zinc-700 hover:text-zinc-900 transition-colors"
-              >
-                {data.email}
-              </a>
-            </div>
-            
-            <div className="flex gap-4">
-              {socialLinks.map((social) => (
-                <motion.a
-                  key={social.name}
-                  href={social.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="w-12 h-12 rounded-full bg-zinc-100 border border-zinc-200 flex items-center justify-center hover:bg-zinc-200 hover:border-zinc-300 transition-all duration-300"
-                  aria-label={social.name}
+            <div>
+              <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed mb-6">
+                Projeleriniz veya işbirliği fırsatları hakkında konuşmak isterseniz, aşağıdaki formdan bana ulaşabilirsiniz.
+              </p>
+              
+              <div className="space-y-3">
+                <a
+                  href={`mailto:${data.email}`}
+                  className="block text-base text-zinc-900 dark:text-zinc-100 hover:text-zinc-600 dark:hover:text-zinc-400 transition-colors"
                 >
-                  <span className="text-sm font-medium text-zinc-900">{social.name.charAt(0)}</span>
-                </motion.a>
-              ))}
+                  {data.email}
+                </a>
+              </div>
+              
+              <div className="flex gap-3 pt-2">
+                {socialLinks.map((social) => (
+                  <motion.a
+                    key={social.name}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+                    aria-label={social.name}
+                  >
+                    {social.name}
+                  </motion.a>
+                ))}
+              </div>
             </div>
           </motion.div>
           
           {/* Contact Form */}
           <motion.form
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
             onSubmit={handleSubmit}
             className="space-y-6"
           >
             <div>
-              <label htmlFor="name" className="block text-lg font-medium mb-2 text-zinc-900">
+              <label htmlFor="name" className="block text-xs uppercase tracking-wider text-zinc-500 dark:text-zinc-500 font-medium mb-2">
                 Name
               </label>
               <input
@@ -120,13 +122,13 @@ export default function Contact({ data }: ContactProps) {
                 value={formData.name}
                 onChange={handleChange}
                 required
-                className="w-full px-6 py-4 bg-white border border-zinc-200 rounded-xl text-lg text-zinc-900 focus:outline-none focus:border-zinc-400 focus:bg-zinc-50 transition-all duration-300 placeholder:text-zinc-400"
+                className="w-full px-4 py-2.5 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg text-sm text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-1 focus:ring-zinc-400 dark:focus:ring-zinc-600 focus:border-transparent transition-all duration-200 placeholder:text-zinc-400 dark:placeholder:text-zinc-600"
                 placeholder="Your name"
               />
             </div>
             
             <div>
-              <label htmlFor="email" className="block text-lg font-medium mb-2 text-zinc-900">
+              <label htmlFor="email" className="block text-xs uppercase tracking-wider text-zinc-500 dark:text-zinc-500 font-medium mb-2">
                 Email
               </label>
               <input
@@ -136,13 +138,13 @@ export default function Contact({ data }: ContactProps) {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="w-full px-6 py-4 bg-white border border-zinc-200 rounded-xl text-lg text-zinc-900 focus:outline-none focus:border-zinc-400 focus:bg-zinc-50 transition-all duration-300 placeholder:text-zinc-400"
+                className="w-full px-4 py-2.5 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg text-sm text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-1 focus:ring-zinc-400 dark:focus:ring-zinc-600 focus:border-transparent transition-all duration-200 placeholder:text-zinc-400 dark:placeholder:text-zinc-600"
                 placeholder="your.email@example.com"
               />
             </div>
             
             <div>
-              <label htmlFor="message" className="block text-lg font-medium mb-2 text-zinc-900">
+              <label htmlFor="message" className="block text-xs uppercase tracking-wider text-zinc-500 dark:text-zinc-500 font-medium mb-2">
                 Message
               </label>
               <textarea
@@ -152,7 +154,7 @@ export default function Contact({ data }: ContactProps) {
                 onChange={handleChange}
                 required
                 rows={6}
-                className="w-full px-6 py-4 bg-white border border-zinc-200 rounded-xl text-lg text-zinc-900 focus:outline-none focus:border-zinc-400 focus:bg-zinc-50 transition-all duration-300 resize-none placeholder:text-zinc-400"
+                className="w-full px-4 py-2.5 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg text-sm text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-1 focus:ring-zinc-400 dark:focus:ring-zinc-600 focus:border-transparent transition-all duration-200 resize-none placeholder:text-zinc-400 dark:placeholder:text-zinc-600"
                 placeholder="Your message..."
               />
             </div>
@@ -160,9 +162,9 @@ export default function Contact({ data }: ContactProps) {
             <motion.button
               type="submit"
               disabled={isSubmitting}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="w-full px-8 py-4 bg-zinc-900 border border-zinc-900 rounded-xl text-lg font-medium text-white hover:bg-zinc-800 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+              whileHover={{ scale: 1.01 }}
+              whileTap={{ scale: 0.99 }}
+              className="w-full px-4 py-2.5 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 rounded-lg text-sm font-medium hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-zinc-400 dark:focus:ring-zinc-600 focus:ring-offset-2"
             >
               {isSubmitting ? 'Sending...' : 'Send Message'}
             </motion.button>

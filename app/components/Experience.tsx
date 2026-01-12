@@ -16,51 +16,51 @@ interface ExperienceProps {
 
 export default function Experience({ items }: ExperienceProps) {
   return (
-    <section id="experience" className="min-h-screen px-4 py-20">
-      <div className="max-w-4xl mx-auto">
+    <section id="experience" className="min-h-screen px-4 py-32 bg-white dark:bg-zinc-950">
+      <div className="max-w-2xl mx-auto">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-5xl md:text-6xl lg:text-7xl font-bold mb-16 text-center text-zinc-900"
+          className="text-xs uppercase tracking-widest text-zinc-500 dark:text-zinc-500 font-medium mb-12"
         >
           Experience
         </motion.h2>
         
         <div className="relative">
           {/* Timeline line */}
-          <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-zinc-300 via-zinc-200 to-transparent" />
+          <div className="absolute left-4 top-0 bottom-0 w-px bg-zinc-200 dark:bg-zinc-800" />
           
-          <div className="space-y-12">
+          <div className="space-y-16">
             {items.map((item, index) => (
               <motion.div
                 key={item.id}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="relative pl-24"
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="relative pl-12"
               >
                 {/* Timeline dot */}
-                <div className="absolute left-6 top-2 w-4 h-4 bg-zinc-900 rounded-full border-4 border-white" />
+                <div className="absolute left-0 top-1 w-2 h-2 bg-zinc-900 dark:bg-zinc-100 rounded-full -translate-x-[3px]" />
                 
-                <div className="bg-zinc-50 border border-zinc-200 rounded-2xl p-8 hover:bg-zinc-100 hover:border-zinc-300 transition-all duration-300">
-                  <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                <div className="space-y-3">
+                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
                     <div>
-                      <h3 className="text-2xl md:text-3xl font-bold mb-2 text-zinc-900">
+                      <h3 className="text-xl font-medium text-zinc-900 dark:text-zinc-100 tracking-tight">
                         {item.role}
                       </h3>
-                      <p className="text-xl text-zinc-700">
+                      <p className="text-base text-zinc-600 dark:text-zinc-400 mt-1">
                         {item.company}
                       </p>
                     </div>
-                    <span className="text-lg text-zinc-600 mt-2 md:mt-0">
+                    <span className="text-sm text-zinc-500 dark:text-zinc-500 font-mono">
                       {item.period}
                     </span>
                   </div>
                   
-                  <p className="text-lg text-zinc-600 leading-relaxed">
+                  <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
                     {item.description}
                   </p>
                 </div>
