@@ -12,11 +12,18 @@ export default function Home() {
       <Hero
         name={siteData.hero.name}
         title={siteData.hero.title}
-        bio={siteData.hero.bio}
+        description={siteData.hero.description}
+        email={siteData.hero.email}
+        avatarSrc={siteData.hero.avatarSrc}
+        companyName={siteData.hero.companyName}
+        companyLogoSrc={siteData.hero.companyLogoSrc}
         established={siteData.hero.established}
-        email={siteData.contact.email}
       />
-      <Work items={siteData.work} />
+      <Work
+        items={siteData.work}
+        heading={siteData.workIntro.heading}
+        subheading={siteData.workIntro.subheading}
+      />
       <Experience items={siteData.experience} />
       <Testimonials items={siteData.testimonials} />
       <Writing items={siteData.writing} />

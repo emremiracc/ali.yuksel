@@ -46,14 +46,20 @@ export type SiteData = {
     name: string;
     title: string;
     description: string;
-    cta: string;
-    bio: string;
+    email: string;
+    avatarSrc: string;
+    companyName: string;
+    companyLogoSrc?: string;
     established: string;
-    avatar?: string;
   };
 
   // Hero / Footer gibi yerlerde ikonlu sosyal link göstermek için
   socials: SocialLink[];
+
+  workIntro: {
+    heading: string;
+    subheading: string;
+  };
 
   work: WorkItem[];
   experience: ExperienceItem[];
@@ -72,13 +78,19 @@ export type SiteData = {
 export const siteData: SiteData = {
   hero: {
     name: "Ali Yüksel",
-    title: "Full Stack Developer",
+    title: "Business Development Professional",
     description:
-      "Yaratıcı çözümler ve modern teknolojilerle dijital deneyimler tasarlıyorum.",
-    cta: "İşlerime Göz At",
-    bio:
-      "Modern web teknolojileri ile ölçeklenebilir uygulamalar geliştiriyorum. Kullanıcı deneyimini ön planda tutarak, performanslı ve sürdürülebilir çözümler üretiyorum.",
+      "Hey, I'm Ali a sales & business development director at Harvard Business Review, based in Türkiye. I work at the intersection of strategy, content and partnerships, helping connect global management thinking with local leaders through premium events, executive programs and strategic branded content collaborations.",
+    email: "aliyuks@outlook.com",
+    avatarSrc: "/avatar.jpg",
+    companyName: "Harvard Business Review",
+    companyLogoSrc: "/hbr.svg",
     established: "EST. 2020",
+  },
+
+  workIntro: {
+    heading: "Work",
+    subheading: "A curated selection of work, full details available on request.",
   },
 
   socials: [

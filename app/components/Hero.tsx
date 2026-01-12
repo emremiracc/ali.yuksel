@@ -2,19 +2,33 @@
 
 import { motion, AnimatePresence } from 'framer-motion'
 import { useState, useEffect, useCallback } from 'react'
-import { Check } from 'lucide-react'
+import { Check, Building2 } from 'lucide-react'
+import Image from 'next/image'
 
 interface HeroProps {
   name: string
   title: string
-  bio: string
-  established: string
+  description: string
   email: string
+  avatarSrc: string
+  companyName: string
+  companyLogoSrc?: string
+  established: string
 }
 
-export default function Hero({ name, title, bio, established, email }: HeroProps) {
+export default function Hero({
+  name,
+  title,
+  description,
+  email,
+  avatarSrc,
+  companyName,
+  companyLogoSrc,
+  established,
+}: HeroProps) {
   const [currentTime, setCurrentTime] = useState('')
   const [showToast, setShowToast] = useState(false)
+  const [logoError, setLogoError] = useState(false)
 
   const copyEmail = useCallback(async () => {
     try {
@@ -70,8 +84,15 @@ export default function Hero({ name, title, bio, established, email }: HeroProps
         <div className="space-y-8">
           {/* Avatar */}
           <div className="relative inline-block">
-            <div className="w-20 h-20 rounded-full bg-gradient-to-br from-zinc-200 to-zinc-300 dark:from-zinc-700 dark:to-zinc-800 flex items-center justify-center text-2xl font-medium text-zinc-700 dark:text-zinc-300">
-              {name.charAt(0)}
+            <div className="relative w-20 h-20 rounded-full overflow-hidden border-2 border-zinc-200 dark:border-zinc-800">
+              <Image
+                src={avatarSrc}
+                alt={name}
+                width={80}
+                height={80}
+                className="object-cover"
+                priority
+              />
             </div>
             <div className="absolute bottom-0 right-0 w-4 h-4 bg-green-500 rounded-full border-2 border-white dark:border-zinc-950" />
           </div>
@@ -87,11 +108,30 @@ export default function Hero({ name, title, bio, established, email }: HeroProps
             <p className="text-lg text-zinc-600 dark:text-zinc-400 font-light">
               {title}
             </p>
+            <div className="flex items-center gap-2">
+              <span className="text-lg text-zinc-600 dark:text-zinc-400 font-light">
+                {companyName}
+              </span>
+              {companyLogoSrc && !logoError ? (
+                <div className="relative w-5 h-5">
+                  <Image
+                    src={companyLogoSrc}
+                    alt={companyName}
+                    width={20}
+                    height={20}
+                    className="object-contain"
+                    onError={() => setLogoError(true)}
+                  />
+                </div>
+              ) : (
+                <Building2 className="w-4 h-4 text-zinc-400 dark:text-zinc-600" />
+              )}
+            </div>
           </div>
 
-          {/* Bio */}
+          {/* Description */}
           <p className="text-base text-zinc-700 dark:text-zinc-300 leading-relaxed font-light tracking-wide">
-            {bio}
+            {description}
           </p>
 
           {/* Email Copy */}
@@ -118,7 +158,7 @@ export default function Hero({ name, title, bio, established, email }: HeroProps
             className="fixed bottom-8 left-1/2 -translate-x-1/2 px-4 py-2 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 rounded-lg shadow-lg flex items-center gap-2 text-sm font-medium z-50"
           >
             <Check className="w-4 h-4" />
-            Email copied!
+            Copied!
           </motion.div>
         )}
       </AnimatePresence>
