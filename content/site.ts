@@ -12,8 +12,8 @@ export type WorkItem = {
   title: string;
   description: string;
   tags: string[];
-  image: string;
   link: string;
+  icon: string;
 };
 
 export type ExperienceItem = {
@@ -118,8 +118,8 @@ export const siteData: SiteData = {
       description:
         "Next.js ve Node.js ile geliştirilmiş ölçeklenebilir e-ticaret platformu",
       tags: ["Next.js", "Node.js", "PostgreSQL"],
-      image: "/work1.jpg",
       link: "https://example.com/work1",
+      icon: "balanced",
     },
     {
       id: 2,
@@ -127,8 +127,8 @@ export const siteData: SiteData = {
       description:
         "React ve TypeScript ile geliştirilmiş analitik dashboard uygulaması",
       tags: ["React", "TypeScript", "D3.js"],
-      image: "/work2.jpg",
       link: "https://example.com/work2",
+      icon: "growth",
     },
     {
       id: 3,
@@ -136,16 +136,16 @@ export const siteData: SiteData = {
       description:
         "React Native ile geliştirilmiş cross-platform mobil uygulama",
       tags: ["React Native", "Firebase", "Redux"],
-      image: "/work3.jpg",
       link: "https://example.com/work3",
+      icon: "income",
     },
     {
       id: 4,
       title: "Design System",
       description: "Kapsamlı bir tasarım sistemi ve component library",
       tags: ["Storybook", "Tailwind", "Figma"],
-      image: "/work4.jpg",
       link: "https://example.com/work4",
+      icon: "balanced",
     },
   ],
 
