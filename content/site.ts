@@ -47,6 +47,9 @@ export type SiteData = {
     title: string;
     description: string;
     cta: string;
+    bio: string;
+    established: string;
+    avatar?: string;
   };
 
   // Hero / Footer gibi yerlerde ikonlu sosyal link göstermek için
@@ -73,6 +76,9 @@ export const siteData: SiteData = {
     description:
       "Yaratıcı çözümler ve modern teknolojilerle dijital deneyimler tasarlıyorum.",
     cta: "İşlerime Göz At",
+    bio:
+      "Modern web teknolojileri ile ölçeklenebilir uygulamalar geliştiriyorum. Kullanıcı deneyimini ön planda tutarak, performanslı ve sürdürülebilir çözümler üretiyorum.",
+    established: "EST. 2020",
   },
 
   socials: [

@@ -1,100 +1,127 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { Linkedin, Twitter, Mail } from 'lucide-react'
-import type { SocialLink } from '@/content/site'
+import { motion, AnimatePresence } from 'framer-motion'
+import { useState, useEffect, useCallback } from 'react'
+import { Check } from 'lucide-react'
 
 interface HeroProps {
   name: string
   title: string
-  description: string
-  cta: string
-  socials: SocialLink[]
+  bio: string
+  established: string
+  email: string
 }
 
-export default function Hero({ name, title, description, cta, socials }: HeroProps) {
+export default function Hero({ name, title, bio, established, email }: HeroProps) {
+  const [currentTime, setCurrentTime] = useState('')
+  const [showToast, setShowToast] = useState(false)
+
+  const copyEmail = useCallback(async () => {
+    try {
+      await navigator.clipboard.writeText(email)
+      setShowToast(true)
+      setTimeout(() => setShowToast(false), 2000)
+    } catch (err) {
+      console.error('Failed to copy email:', err)
+    }
+  }, [email])
+
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date()
+      const timeString = now.toLocaleTimeString('tr-TR', {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false,
+      })
+      setCurrentTime(`${timeString} GMT+3`)
+    }
+
+    updateTime()
+    const interval = setInterval(updateTime, 1000)
+
+    return () => clearInterval(interval)
+  }, [])
+
+  useEffect(() => {
+    const handleKeyPress = (e: KeyboardEvent) => {
+      if (e.key === 'c' || e.key === 'C') {
+        if (!e.ctrlKey && !e.metaKey && !e.altKey) {
+          copyEmail()
+        }
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyPress)
+    return () => window.removeEventListener('keydown', handleKeyPress)
+  }, [copyEmail])
+
   return (
-    <section className="min-h-screen flex items-center justify-center px-4 py-20">
-      <div className="max-w-6xl w-full">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center"
-        >
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-7xl md:text-8xl lg:text-9xl font-bold mb-6 bg-gradient-to-r from-zinc-900 to-zinc-600 bg-clip-text text-transparent"
-          >
-            {name}
-          </motion.h1>
-          
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-3xl md:text-4xl lg:text-5xl font-light mb-8 text-zinc-700"
-          >
-            {title}
-          </motion.h2>
+    <section className="min-h-screen flex items-center justify-center px-4 py-20 bg-white dark:bg-zinc-950 transition-colors">
+      <div className="max-w-[620px] w-full">
+        {/* Top Bar */}
+        <div className="flex items-center justify-between mb-16 text-xs tracking-wider text-zinc-500 dark:text-zinc-500">
+          <div className="w-1.5 h-1.5 rounded-full bg-zinc-400 dark:bg-zinc-600" />
+          <div className="uppercase font-medium">{established}</div>
+          <div className="font-mono">{currentTime}</div>
+        </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.25 }}
-            className="mt-6 flex justify-center gap-6"
-          >
-            {socials.map((social) => {
-              const icons = {
-                linkedin: Linkedin,
-                twitter: Twitter,
-                mail: Mail,
-              } as const
+        {/* Hero Content */}
+        <div className="space-y-8">
+          {/* Avatar */}
+          <div className="relative inline-block">
+            <div className="w-20 h-20 rounded-full bg-gradient-to-br from-zinc-200 to-zinc-300 dark:from-zinc-700 dark:to-zinc-800 flex items-center justify-center text-2xl font-medium text-zinc-700 dark:text-zinc-300">
+              {name.charAt(0)}
+            </div>
+            <div className="absolute bottom-0 right-0 w-4 h-4 bg-green-500 rounded-full border-2 border-white dark:border-zinc-950" />
+          </div>
 
-              const Icon = icons[social.icon]
+          {/* Name & Title */}
+          <div className="space-y-2">
+            <div className="flex items-center gap-3">
+              <h1 className="text-4xl font-light tracking-tight text-zinc-900 dark:text-zinc-100">
+                {name}
+              </h1>
+              <div className="w-1.5 h-1.5 rounded-full bg-zinc-400 dark:bg-zinc-500" />
+            </div>
+            <p className="text-lg text-zinc-600 dark:text-zinc-400 font-light">
+              {title}
+            </p>
+          </div>
 
-              return (
-                <motion.a
-                  key={social.name}
-                  href={social.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={social.name}
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="text-zinc-600 hover:text-zinc-900 transition-colors"
-                >
-                  <Icon className="w-5 h-5" />
-                </motion.a>
-              )
-            })}
-          </motion.div>
-          
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-lg md:text-xl lg:text-2xl text-zinc-600 max-w-3xl mx-auto mb-12 leading-relaxed"
-          >
-            {description}
-          </motion.p>
-          
-          <motion.a
-            href="#work"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="inline-block px-8 py-4 bg-zinc-100 border border-zinc-200 rounded-full text-lg font-medium text-zinc-900 hover:bg-zinc-200 transition-all duration-300"
-          >
-            {cta}
-          </motion.a>
-        </motion.div>
+          {/* Bio */}
+          <p className="text-base text-zinc-700 dark:text-zinc-300 leading-relaxed font-light tracking-wide">
+            {bio}
+          </p>
+
+          {/* Email Copy */}
+          <div className="pt-4 border-t border-zinc-200 dark:border-zinc-800">
+            <button
+              onClick={copyEmail}
+              className="group flex items-center gap-2 text-sm text-zinc-500 dark:text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-300 transition-colors"
+            >
+              <span className="font-mono text-xs">
+                Press <kbd className="px-1.5 py-0.5 bg-zinc-100 dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-700 rounded text-zinc-700 dark:text-zinc-300">C</kbd> to copy my email
+              </span>
+            </button>
+          </div>
+        </div>
       </div>
+
+      {/* Toast */}
+      <AnimatePresence>
+        {showToast && (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 10 }}
+            className="fixed bottom-8 left-1/2 -translate-x-1/2 px-4 py-2 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 rounded-lg shadow-lg flex items-center gap-2 text-sm font-medium z-50"
+          >
+            <Check className="w-4 h-4" />
+            Email copied!
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   )
 }
-

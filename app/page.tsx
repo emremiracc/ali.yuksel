@@ -12,9 +12,9 @@ export default function Home() {
       <Hero
         name={siteData.hero.name}
         title={siteData.hero.title}
-        description={siteData.hero.description}
-        cta={siteData.hero.cta}
-        socials={siteData.socials}
+        bio={siteData.hero.bio}
+        established={siteData.hero.established}
+        email={siteData.contact.email}
       />
       <Work items={siteData.work} />
       <Experience items={siteData.experience} />
