@@ -1,6 +1,8 @@
 import { siteData } from '@/content/site'
 import Hero from './components/Hero'
+import Stack from './components/Stack'
 import Work from './components/Work'
+import Showcase from './components/Showcase'
 import Experience from './components/Experience'
 import Writing from './components/Writing'
 import Contact from './components/Contact'
@@ -18,12 +20,18 @@ export default function Home() {
         companyLogoSrc={siteData.hero.companyLogoSrc}
         established={siteData.hero.established}
       />
+      <Stack items={siteData.stack} />
       <Work
         items={siteData.work}
         heading={siteData.workIntro.heading}
         subheading={siteData.workIntro.subheading}
       />
-      <Experience items={siteData.experience} />
+      <Showcase images={siteData.showcase.images} />
+      <Experience
+        eyebrow={siteData.experienceSection.eyebrow}
+        intro={siteData.experienceSection.intro}
+        items={siteData.experience}
+      />
       <Writing items={siteData.writing} />
       <Contact data={siteData.contact} />
     </main>

@@ -16,12 +16,23 @@ export type WorkItem = {
   icon: string;
 };
 
+export type StackItem = {
+  name: string;
+  icon: string;
+};
+
 export type ExperienceItem = {
   id: number;
   role: string;
   company: string;
+  companyBadge?: string;
   period: string;
   description: string;
+};
+
+export type ShowcaseImage = {
+  src: string;
+  alt: string;
 };
 
 export type TestimonialItem = {
@@ -62,7 +73,20 @@ export type SiteData = {
   };
 
   work: WorkItem[];
+
+  stack: StackItem[];
+
+  experienceSection: {
+    eyebrow: string;
+    intro: string;
+  };
+
   experience: ExperienceItem[];
+
+  showcase: {
+    images: ShowcaseImage[];
+  };
+
   testimonials: TestimonialItem[];
   writing: WritingItem[];
 
@@ -91,6 +115,30 @@ export const siteData: SiteData = {
   workIntro: {
     heading: "Work",
     subheading: "A curated selection of work, full details available on request.",
+  },
+
+  stack: [
+    { name: "Framer", icon: "framer" },
+    { name: "Figma", icon: "figma" },
+    { name: "Next.js", icon: "nextjs" },
+    { name: "GitHub", icon: "github" },
+    { name: "OpenAI", icon: "openai" },
+    { name: "Spotify", icon: "spotify" },
+  ],
+
+  experienceSection: {
+    eyebrow: "EXPERIENCE",
+    intro:
+      "Throughout my career, I've worked at the intersection of strategy, content and partnerships. Here's a brief overview.",
+  },
+
+  showcase: {
+    images: [
+      { src: "/showcase/shot-1.jpg", alt: "Work showcase 1" },
+      { src: "/showcase/shot-2.jpg", alt: "Work showcase 2" },
+      { src: "/showcase/shot-3.jpg", alt: "Work showcase 3" },
+      { src: "/showcase/shot-4.jpg", alt: "Work showcase 4" },
+    ],
   },
 
   socials: [
@@ -152,25 +200,26 @@ export const siteData: SiteData = {
   experience: [
     {
       id: 1,
-      role: "Senior Full Stack Developer",
-      company: "Tech Company",
-      period: "2022 - Present",
+      role: "Sales & Business Development Director",
+      company: "Harvard Business Review",
+      companyBadge: "HBR",
+      period: "2024 — NOW",
       description:
         "Leading development of scalable web applications and mentoring junior developers.",
     },
     {
       id: 2,
-      role: "Full Stack Developer",
+      role: "Business Development Manager",
       company: "Startup Inc",
-      period: "2020 - 2022",
+      period: "2020 — 2024",
       description:
         "Built and maintained multiple client projects using modern JavaScript frameworks.",
     },
     {
       id: 3,
-      role: "Frontend Developer",
+      role: "Partnerships Lead",
       company: "Digital Agency",
-      period: "2018 - 2020",
+      period: "2018 — 2020",
       description:
         "Developed responsive web applications and collaborated with design teams.",
     },
