@@ -71,7 +71,7 @@ export default function Hero({
   }, [copyEmail])
 
   return (
-    <section className="min-h-screen flex items-center justify-center px-4 py-20 bg-white dark:bg-zinc-950 transition-colors">
+    <section className="flex items-center justify-center px-4 py-20 bg-white dark:bg-zinc-950 transition-colors">
       <div className="max-w-[620px] w-full">
         {/* Top Bar */}
         <div className="flex items-center justify-between mb-16 text-xs tracking-wider text-zinc-500 dark:text-zinc-500">

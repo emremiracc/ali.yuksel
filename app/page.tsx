@@ -1,10 +1,8 @@
 import { siteData } from '@/content/site'
 import Hero from './components/Hero'
-import ShowcaseBanner from './components/ShowcaseBanner'
-import Stack from './components/Stack'
 import Work from './components/Work'
-import Showcase from './components/Showcase'
-import Experience from './components/Experience'
+import Testimonials from './components/Testimonials'
+import Stack from './components/Stack'
 import Writing from './components/Writing'
 import Contact from './components/Contact'
 
@@ -21,19 +19,13 @@ export default function Home() {
         companyLogoSrc={siteData.hero.companyLogoSrc}
         established={siteData.hero.established}
       />
-      <ShowcaseBanner />
-      <Stack items={siteData.stack} />
       <Work
         items={siteData.work}
         heading={siteData.workIntro.heading}
         subheading={siteData.workIntro.subheading}
       />
-      <Showcase images={siteData.showcase.images} />
-      <Experience
-        eyebrow={siteData.experienceSection.eyebrow}
-        intro={siteData.experienceSection.intro}
-        items={siteData.experience}
-      />
+      <Testimonials items={siteData.testimonials} />
+      <Stack items={siteData.stack} />
       <Writing items={siteData.writing} />
       <Contact data={siteData.contact} />
     </main>

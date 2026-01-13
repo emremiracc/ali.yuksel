@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { useState } from 'react'
 import { Scale, Orbit, BarChart3, ExternalLink } from 'lucide-react'
+import Showcase from './Showcase'
 
 interface WorkItem {
   id: number
@@ -52,6 +53,11 @@ export default function Work({ items, heading, subheading }: WorkProps) {
               {subheading}
             </p>
           </motion.div>
+        </div>
+
+        {/* Showcase Cards */}
+        <div className="mb-20">
+          <Showcase />
         </div>
 
         {/* Card Container */}

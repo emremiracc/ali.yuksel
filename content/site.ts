@@ -114,7 +114,7 @@ export const siteData: SiteData = {
 
   workIntro: {
     heading: "Work",
-    subheading: "A curated selection of work, full details available on request.",
+    subheading: "Below are some select projects, full walkthroughs on request",
   },
 
   stack: [
