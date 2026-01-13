@@ -1,5 +1,6 @@
 import { siteData } from '@/content/site'
 import Hero from './components/Hero'
+import ShowcaseBanner from './components/ShowcaseBanner'
 import Stack from './components/Stack'
 import Work from './components/Work'
 import Showcase from './components/Showcase'
@@ -20,6 +21,7 @@ export default function Home() {
         companyLogoSrc={siteData.hero.companyLogoSrc}
         established={siteData.hero.established}
       />
+      <ShowcaseBanner />
       <Stack items={siteData.stack} />
       <Work
         items={siteData.work}
